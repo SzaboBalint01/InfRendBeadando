@@ -6,19 +6,16 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:ui="http://java.sun.com/jsf/facelets"
 xmlns:p="http://primefaces.org/ui">
- 
-<h:head>
-</h:head>
- <h:body>
-      <ui:composition template="templates/template.xhtml">	
-         <ui:define name="content">				
-            <br/><br/>
-1
-            <br/><br/>
-         </ui:define>
-      </ui:composition>
-   </h:body>
-<h:form>
-   <p:editor value="#{editor.value}" />
-</h:form>
+<body>
+	<ui:composition>
+		<p:toolbar>
+			<f:facet name="right">
+				<p:clock pattern="yyyy.MM.dd HH:mm:ss" />
+			</f:facet>
+			<f:facet name="left">
+			<h:outputText value="Szabó Bálint - COUDEM" style="font-size:10px" />
+			</f:facet>
+		</p:toolbar>
+	</ui:composition>
+</body>
 </html>
