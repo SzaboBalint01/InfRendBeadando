@@ -13,5 +13,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/afterwork-1.0.10.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/cdi-api-2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/primefaces-8.0.RC3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-8.0.20.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

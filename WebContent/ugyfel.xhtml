@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ <h:body>
+      <ui:composition template="templates/template.xhtml">	
+         <ui:define name="content">				
+            <br/><br/>
+			<p:outputPanel deferred="true">
+			        <h:form id="ugyfelTable">
+            <p:messages id="messages"/>
+            <p:column style="text-align: center">
+                <p:dataTable var="ugyfel"
+                             emptyMessage="Nincsenek ügyfelek"
+                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+                             value="#{UgyfelBean.getUgyfel()}">
+					<p:column headerText="ID">
+                        <h:outputText value="#{ugyfel.idugyfel}" />
+                    </p:column>
+                    <p:column headerText="Szemelyiszam">
+                        <h:outputText value="#{ugyfel.szemelyiszam}" />
+                    </p:column>
+                    <p:column headerText="Név">
+                        <h:outputText value="#{ugyfel.nev}" />
+                    </p:column>
+                    <p:column headerText="Szulido">
+                        <h:outputText value="#{ugyfel.szulido}" />
+                    </p:column>
+                    <p:column headerText="Szulhely">
+                        <h:outputText value="#{ugyfel.szulhely}" />
+                    </p:column>
+                    <p:column headerText="Cim">
+                        <h:outputText value="#{ugyfel.cim}" />
+ 					</p:column>
+					<p:column headerText="Telefon">
+	                        <h:outputText value="#{ugyfel.telefon}" />
+ 					</p:column>
+					<p:column headerText="Ceg">
+	                        <h:outputText value="#{ugyfel.ceg}" />
+ 					</p:column>
+                </p:dataTable>
+            </p:column>
+        </h:form>
+	</p:outputPanel>
+            <br/><br/>
+         </ui:define>
+      </ui:composition>
+   </h:body>
+<h:form>
+</h:form>
+</html>
