@@ -10,12 +10,11 @@ xmlns:p="http://primefaces.org/ui">
 	<ui:composition>
 		<h:form>
 			<p:growl id="messages" showDetail="true" />
-			<p:outputLabel></p:outputLabel>
 			<p:toolbar>
 				<f:facet name="left">
 					<h:outputLabel value="" styleClass="fa fa-fw fa-lg fa-stack-overflow" />
 					<p:column style="text-align: left" class="TexLeft">
-					<h:outputText value="Autókölcsönző nyilvántartás" style="font-size:1.0em" />
+					<h:outputText value="Autókölcsönző nyilvántartás" style="font-size:1.0em;font-variant:small-caps;padding: 15px;vertical-align:-10px;" />
 					</p:column>
 				</f:facet>
 
@@ -26,8 +25,14 @@ xmlns:p="http://primefaces.org/ui">
 						<p:menuitem value="Ügyfelek listázása" url="ugyfel.xhtml"/>
 						<p:menuitem value="Ügyfél hozzáadása" url="index.xhtml"/>
 					</p:submenu>
-					<p:menuitem value="Készletnyílvántartás" url="index.xhtml" />
-					<p:menuitem value="Kölcsönzés" url="index.xhtml" />
+					<p:submenu label="Készletnyílvántartás">
+						<p:menuitem value="Járművek listázása" url="index.xhtml" />
+						<p:menuitem value="Jármű hozzáadása" url="index.xhtml" />
+					</p:submenu>
+					<p:submenu label="Kölcsönzés">
+						<p:menuitem value="Aktív kölcsönzések" url="index.xhtml" />
+						<p:menuitem value="Új kölcsönzés" url="index.xhtml" />
+					</p:submenu>
 				</p:menubar>
 				</f:facet>
 			</p:toolbar>

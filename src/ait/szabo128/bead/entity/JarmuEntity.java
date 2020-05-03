@@ -11,15 +11,16 @@ public class JarmuEntity {
 	private String gyarto;
 	private String alvazszam;
 	private Date beszerzesidatum;
-	private int kolcsonzesidij;
-	private int futottkmdij;
-	private int statusz;
+	private Integer kolcsonzesidij;
+	private Integer futottkmdij;
+	private Integer statusz;
 
 	public JarmuEntity() {
 	}
 
-	public JarmuEntity(String tipus, String rendszam, String gyarto, String alvazszam, Date beszerzesidatum,
-			int kolcsonzesidij, int futottkmdij, int statusz) {
+	public JarmuEntity(Integer idjarmu, String tipus, String rendszam, String gyarto, String alvazszam, Date beszerzesidatum,
+			Integer kolcsonzesidij, Integer futottkmdij, Integer statusz) {
+		this.idjarmu = idjarmu;
 		this.tipus = tipus;
 		this.rendszam = rendszam;
 		this.gyarto = gyarto;
@@ -78,7 +79,7 @@ public class JarmuEntity {
 		this.beszerzesidatum = beszerzesidatum;
 	}
 
-	public int getKolcsonzesidij() {
+	public Integer getKolcsonzesidij() {
 		return this.kolcsonzesidij;
 	}
 
@@ -86,7 +87,7 @@ public class JarmuEntity {
 		this.kolcsonzesidij = kolcsonzesidij;
 	}
 
-	public int getFutottkmdij() {
+	public Integer getFutottkmdij() {
 		return this.futottkmdij;
 	}
 
@@ -94,7 +95,7 @@ public class JarmuEntity {
 		this.futottkmdij = futottkmdij;
 	}
 
-	public int getStatusz() {
+	public Integer getStatusz() {
 		return this.statusz;
 	}
 

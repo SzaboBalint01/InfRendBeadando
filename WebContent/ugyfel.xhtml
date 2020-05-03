@@ -13,44 +13,86 @@ xmlns:p="http://primefaces.org/ui">
       <ui:composition template="templates/template.xhtml">	
          <ui:define name="content">				
             <br/><br/>
-			<p:outputPanel deferred="true">
-			        <h:form id="ugyfelTable">
-            <p:messages id="messages"/>
-            <p:column style="text-align: center">
-                <p:dataTable var="ugyfel"
-                             emptyMessage="Nincsenek ügyfelek"
-                             tableStyle="width: auto; margin: 0px auto; text-align: center"
-                             value="#{UgyfelBean.getUgyfel()}">
-					<p:column headerText="ID">
-                        <h:outputText value="#{ugyfel.idugyfel}" />
-                    </p:column>
-                    <p:column headerText="Szemelyiszam">
-                        <h:outputText value="#{ugyfel.szemelyiszam}" />
-                    </p:column>
-                    <p:column headerText="Név">
-                        <h:outputText value="#{ugyfel.nev}" />
-                    </p:column>
-                    <p:column headerText="Szulido">
-                        <h:outputText value="#{ugyfel.szulido}" />
-                    </p:column>
-                    <p:column headerText="Szulhely">
-                        <h:outputText value="#{ugyfel.szulhely}" />
-                    </p:column>
-                    <p:column headerText="Cim">
-                        <h:outputText value="#{ugyfel.cim}" />
- 					</p:column>
-					<p:column headerText="Telefon">
-	                        <h:outputText value="#{ugyfel.telefon}" />
- 					</p:column>
-					<p:column headerText="Ceg">
-	                        <h:outputText value="#{ugyfel.ceg}" />
- 					</p:column>
-                </p:dataTable>
-            </p:column>
-        </h:form>
-	</p:outputPanel>
-            <br/><br/>
-         </ui:define>
+			<p:panel id="ugyfelek" header="Regisztrált ügyfelek" style="margin-bottom:10px;font-variant:small-caps">
+				<p:outputPanel deferred="true">
+			  		<h:form id="ugyfelTable">
+            			<p:messages id="messages"/>
+            				<p:column style="text-align: center">
+               					 <p:dataTable var="ugyfel"
+		                             emptyMessage="Nincsenek ügyfelek"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{UgyfelBean.listUgyfel()}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{ugyfel.idugyfel}" />
+					                    </p:column>
+					                    <p:column headerText="Személyi szám">
+					                        <h:outputText value="#{ugyfel.szemelyiszam}" />
+					                    </p:column>
+					                    <p:column headerText="Név">
+					                        <h:outputText value="#{ugyfel.nev}" />
+					                    </p:column>
+					                    <p:column headerText="Születési idő">
+					                        <h:outputText value="#{ugyfel.szulido}" />
+					                    </p:column>
+					                    <p:column headerText="Születési hely">
+					                        <h:outputText value="#{ugyfel.szulhely}" />
+					                    </p:column>
+					                    <p:column headerText="Cím">
+					                        <h:outputText value="#{ugyfel.cim}" />
+					 					</p:column>
+										<p:column headerText="Telefon">
+						                        <h:outputText value="#{ugyfel.telefon}" />
+					 					</p:column>
+										<p:column headerText="Cég(ha van)">
+						                        <h:outputText value="#{ugyfel.ceg}" />
+					 					</p:column>
+               						 </p:dataTable>
+					            </p:column>
+					        </h:form>
+						</p:outputPanel>
+						<h:form>
+						   <h:panelGrid columns="4" cellpadding="5">
+						     <h:outputLabel for="name" value="Név:" style="font-weight:bold"/>
+						      	<p:inputText id="name" value="#{UgyfelBean.nev}" />
+						        <p:commandButton value="Keresés" icon="pi pi-search" update=":dataTableGroup" onclick="PF('dlg1').show();"/>
+						    </h:panelGrid>
+						</h:form>
+						</p:panel>
+						<p:dialog header="Keresés eredménye" widgetVar="dlg1" minHeight="40">
+						<h:panelGroup id="dataTableGroup">
+						    <p:dataTable id="tabla" var="ugyfel"
+		                             emptyMessage="Nincsn ilyen nevű ügyfél!"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{UgyfelBean.searchUgyfelnev(UgyfelBean.nev)}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{ugyfel.idugyfel}" />
+					                    </p:column>
+					                    <p:column headerText="Személyi szám">
+					                        <h:outputText value="#{ugyfel.szemelyiszam}" />
+					                    </p:column>
+					                    <p:column headerText="Név">
+					                        <h:outputText value="#{ugyfel.nev}" />
+					                    </p:column>
+					                    <p:column headerText="Születési idő">
+					                        <h:outputText value="#{ugyfel.szulido}" />
+					                    </p:column>
+					                    <p:column headerText="Születési hely">
+					                        <h:outputText value="#{ugyfel.szulhely}" />
+					                    </p:column>
+					                    <p:column headerText="Cím">
+					                        <h:outputText value="#{ugyfel.cim}" />
+					 					</p:column>
+										<p:column headerText="Telefon">
+						                        <h:outputText value="#{ugyfel.telefon}" />
+					 					</p:column>
+										<p:column headerText="Cég(ha van)">
+						                        <h:outputText value="#{ugyfel.ceg}" />
+					 					</p:column>
+               						 </p:dataTable>
+								</h:panelGroup>
+						</p:dialog>
+            		<br/><br/>
+        	 </ui:define>
       </ui:composition>
    </h:body>
 <h:form>

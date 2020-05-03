@@ -29,7 +29,7 @@ public class KolcsonzoDAO {
 		return DBconnection;
 	}
 	
-    public ArrayList<UgyfelEntity> listUgyfel() {
+    public ArrayList<UgyfelEntity> fetchUgyfel() {
         ArrayList<UgyfelEntity> ugyfel = new ArrayList<>();
         myconn = connect();
         try {
@@ -39,14 +39,48 @@ public class KolcsonzoDAO {
                 ugyfel.add(new UgyfelEntity(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
                 		resultset.getDate(4), resultset.getString(5), resultset.getString(6), resultset.getString(7),
                 		resultset.getString(8)));
-                System.out.println(ugyfel);
-                
-               
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+                //System.out.println(ugyfel);   
+                }
+        	} catch (SQLException e) {
+            System.out.println(e.getMessage());}
         return ugyfel;
-    }
+    	}
+    
+    public ArrayList<UgyfelEntity> filterUgyfelbynev(String nev) {
+        ArrayList<UgyfelEntity> ugyfel = new ArrayList<>();
+        //System.out.println(nev);
+        myconn = connect();
+        try {
+        PreparedStatement preparedstatement = myconn.prepareStatement("select * from ugyfel where nev='" + nev+"'");
+        ResultSet resultset = preparedstatement.executeQuery();
+            while (resultset.next()) {
+                ugyfel.add(new UgyfelEntity(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
+                		resultset.getDate(4), resultset.getString(5), resultset.getString(6), resultset.getString(7),
+                		resultset.getString(8)));
+               // System.out.println(ugyfel);
+                }
+        	} catch (SQLException e) {
+            System.out.println(e.getMessage());}
+        return ugyfel;
+    	}
+    
+    public ArrayList<JarmuEntity> fetchJarmu() {
+        ArrayList<JarmuEntity> jarmu = new ArrayList<>();
+        myconn = connect();
+        try {
+        PreparedStatement preparedstatement = myconn.prepareStatement("select * from jarmu");
+        ResultSet resultset = preparedstatement.executeQuery();
+            while (resultset.next()) {
+                jarmu.add(new JarmuEntity(resultset.getInt(1), resultset.getString(2), resultset.getString(3),
+                		resultset.getString(4), resultset.getString(5), resultset.getDate(6), resultset.getInt(7),
+                		resultset.getInt(8),resultset.getInt(9)));
+                //System.out.println(jarmu);   
+                }
+        	} catch (SQLException e) {
+            System.out.println(e.getMessage());}
+        return jarmu;
+    	}
+    
+    
 	
 }

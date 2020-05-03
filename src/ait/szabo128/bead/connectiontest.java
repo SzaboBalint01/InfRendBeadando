@@ -18,7 +18,7 @@ public class connectiontest {
 		
 		
 		try {
-			kolcsonzoDAO.listUgyfel();
+			kolcsonzoDAO.fetchUgyfel();
 			
                 
 		}
