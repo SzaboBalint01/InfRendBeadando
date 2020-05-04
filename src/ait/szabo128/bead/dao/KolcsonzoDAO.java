@@ -3,6 +3,7 @@ package ait.szabo128.bead.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,8 +42,8 @@ public class KolcsonzoDAO {
                 		resultset.getString(8)));
                 //System.out.println(ugyfel);   
                 }
-        	} catch (SQLException e) {
-            System.out.println(e.getMessage());}
+        	} catch (SQLException ex) {
+            System.out.println(ex.getMessage());}
         return ugyfel;
     	}
     
@@ -63,6 +64,24 @@ public class KolcsonzoDAO {
             System.out.println(e.getMessage());}
         return ugyfel;
     	}
+    
+    public void insertUgyfel(String szemelyiszam, String nev, String szulido, String szulhely, String cim, String telefon, String ceg){
+    	myconn = connect();
+    	try {
+    		Date szulidoinmilis = Date.valueOf(szulido);
+    		PreparedStatement preparedstatement = myconn.prepareStatement("insert into ugyfel (szemelyiszam, nev, szulido, szulhely, cim, telefon, ceg ) values (?,?,?,?,?,?,?)");
+    		preparedstatement.setString(1, szemelyiszam);
+    		preparedstatement.setString(2, nev);
+    		preparedstatement.setDate(3,szulidoinmilis);
+    		preparedstatement.setString(4,szulhely);
+    		preparedstatement.setString(5,cim);
+    		preparedstatement.setString(6,telefon);
+    		preparedstatement.setString(7,ceg);
+    		preparedstatement.execute(); 		
+    	}catch (SQLException ex) {
+            System.out.println(ex.getMessage());}
+    	
+    }
     
     public ArrayList<JarmuEntity> fetchJarmu() {
         ArrayList<JarmuEntity> jarmu = new ArrayList<>();

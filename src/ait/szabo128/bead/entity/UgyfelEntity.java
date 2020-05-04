@@ -1,6 +1,6 @@
 package ait.szabo128.bead.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UgyfelEntity{
 
