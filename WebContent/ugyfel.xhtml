@@ -12,7 +12,7 @@ xmlns:p="http://primefaces.org/ui">
  <h:body>
       <ui:composition template="templates/template.xhtml">	
          <ui:define name="content">				
-            <br/><br/>
+            <br/>
 			<p:panel id="ugyfelek" header="Regisztrált ügyfelek" style="margin-bottom:10px;font-variant:small-caps">
 				<p:outputPanel deferred="true">
 			  		<h:form id="ugyfelTable">
@@ -61,7 +61,7 @@ xmlns:p="http://primefaces.org/ui">
 						<p:dialog header="Keresés eredménye" widgetVar="dlg1" minHeight="40">
 						<h:panelGroup id="dataTableGroup">
 						    <p:dataTable id="tabla" var="ugyfel"
-		                             emptyMessage="Nincsn ilyen nevű ügyfél!"
+		                             emptyMessage="Nincs ilyen nevű ügyfél!"
 		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
 		                             value="#{UgyfelBean.searchUgyfelnev(UgyfelBean.nev)}">
 										<p:column headerText="ID">

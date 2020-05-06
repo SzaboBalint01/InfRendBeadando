@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+import javax.validation.constraints.Size;
 
 import ait.szabo128.bead.entity.*;
 
@@ -16,14 +20,19 @@ import ait.szabo128.bead.dao.KolcsonzoDAO;
 public class UgyfelBean {
 	 private KolcsonzoDAO kolcsonzoDAO;
 	 private String nev;
+	 @Size(max=45)
 	 private String ujnev;
 	 private String ujszemelyiszam;
 	 private String ujszulido;
+	 @Size(max=45)
 	 private String ujszulhely;
+	 @Size(max=80)
 	 private String ujcim;
 	 private String ujtelefon;
+	 @Size(max=45)
 	 private String ujceg;
 	 
+	 public UgyfelBean() { }
 	 
 	 @PostConstruct
 	  public void init() {
@@ -36,9 +45,21 @@ public class UgyfelBean {
 	 public ArrayList<UgyfelEntity> searchUgyfelnev(String nev){
 		 return kolcsonzoDAO.filterUgyfelbynev(nev);
 	 }
-	 public void addUgyfel() {
-		 kolcsonzoDAO.insertUgyfel(ujszemelyiszam, ujnev, ujszulido, ujszulhely, ujcim, ujtelefon,ujceg);
+	 
+	 public void addUgyfel(String ujszemelyiszam, String  ujnev, String ujszulido, String ujszulhely, String ujcim, String ujtelefon, String ujceg ) {
+			 kolcsonzoDAO.insertUgyfel(ujszemelyiszam, ujnev, ujszulido, ujszulhely, ujcim, ujtelefon, ujceg);
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,"Sikeres felvétel!", "Felvett ügyfél:" +ujnev) );
+			 this.ujnev=null;
+			 this.ujszemelyiszam=null;
+			 this.ujszulido=null;
+			 this.ujszulhely=null;
+			 this.ujcim=null;
+			 this.ujtelefon=null;
+			 this.ujceg=null; 
 	 }
+	 
+	 
 	 public void setNev(String nev) {
 	        this.nev = nev;
 	    }

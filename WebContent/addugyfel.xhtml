@@ -12,33 +12,42 @@ xmlns:p="http://primefaces.org/ui">
  <h:body>
       <ui:composition template="templates/template.xhtml">	
          <ui:define name="content">				
-            <br/><br/>
-			<p:panel header="Új ügyfél felvétele" style="margin-bottom:10px;font-variant:small-caps">
-			<h:form>
-			<h:outputLabel for="szemelyiszam" value="Személyi szám(CCCCCCCC):" style="font-weight:bold;position:absolute;"/>
-			<p:inputText id="szemelyiszam" value="#{UgyfelBean.ujszemelyiszam}" required="true" label="Szemelyiszam" style="margin-left:225px;"/>
+            <br/>
+	<p:panel header="Új ügyfél felvétele" style="margin-bottom:5px;font-variant:small-caps">
+		<h:form id="ezaform">
+			 <h:outputLabel for="szemelyiszam" value="Személyi szám:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputMask id="szemelyiszam" value="#{UgyfelBean.ujszemelyiszam}" required="true"  style="margin-left:225px;" mask="********" title="Maximum 8 karakter."/>
+			 <p:tooltip for="szemelyiszam" showEvent="focus" hideEvent="blur" />	
 			<br/><br/>
 			 <h:outputLabel for="nev" value="Név:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="nev" value="#{UgyfelBean.ujnev}" required="true" label="Nev" style="margin-left:225px;"/>
+			 <p:inputText id="nev" value="#{UgyfelBean.ujnev}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="nev" showEvent="focus" hideEvent="blur" />
 			<br/><br/>
 			 <h:outputLabel for="szulido" value="Születési idő:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="szulido" value="#{UgyfelBean.ujszulido}" required="true" label="Szulido" style="margin-left:225px;"/>
+			 <p:inputMask id="szulido" value="#{UgyfelBean.ujszulido}" required="true"  style="margin-left:225px;" mask="9999-99-99" title="Formátum: yyyy-mm-dd" />
+			 <p:tooltip for="szulido" showEvent="focus" hideEvent="blur" />
 			<br/><br/>
 			 <h:outputLabel for="szulhely" value="Születési hely:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="szulhely" value="#{UgyfelBean.ujszulhely}" required="true" label="Szulhely" style="margin-left:225px;"/>
+			 <p:inputText id="szulhely" value="#{UgyfelBean.ujszulhely}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="szulhely" showEvent="focus" hideEvent="blur" />
 			<br/><br/>
 			 <h:outputLabel for="cim" value="Cím:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="cim" value="#{UgyfelBean.ujcim}" required="true" label="Cim" style="margin-left:225px;"/>
+			 <p:inputText id="cim" value="#{UgyfelBean.ujcim}" required="true"  style="margin-left:225px;" title="Maximum 80 karakter."/>
+			 <p:tooltip for="cim" showEvent="focus" hideEvent="blur" />
 			<br/><br/>
 			 <h:outputLabel for="telefon" value="Telefon:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="telefon" value="#{UgyfelBean.ujtelefon}" required="true" label="Telefon" style="margin-left:225px;"/>
+			 <p:inputMask id="telefon" value="#{UgyfelBean.ujtelefon}" required="true"  style="margin-left:225px;" mask="99 99 999 999" title="Formátum: 99-99-999-999"/>
+			 <p:tooltip for="telefon" showEvent="focus" hideEvent="blur" />
 			<br/><br/>
 			 <h:outputLabel for="ceg" value="Cég:" style="font-weight:bold;position:absolute;"/>
-			 <p:inputText id="ceg" value="#{UgyfelBean.ujceg}" required="true" label="Ceg" style="margin-left:225px;"/>
-			</h:form>
-			<p:commandButton value="Felvétel" action="#{UgyfelBean.addUgyfel()}" icon="pi pi-check" validateClient="true" style="margin-right:10px"/>
-			</p:panel>
-            <br/><br/>
+			 <p:inputText id="ceg" value="#{UgyfelBean.ujceg}" style="margin-left:225px;" title="Maximum 45 karakter. Kitöltés nem kötelezö."/>
+			 <p:tooltip for="ceg" showEvent="focus" hideEvent="blur" />
+		    <br/><br/>
+			<p:growl id="growl" showDetail="true" life="1500"/>
+            <p:commandButton id="felvetelbutton" value="Felvétel" icon="pi pi-check" action="#{UgyfelBean.addUgyfel(UgyfelBean.ujszemelyiszam,UgyfelBean.ujnev,UgyfelBean.ujszulido,UgyfelBean.ujszulhely,UgyfelBean.ujcim,UgyfelBean.ujtelefon,UgyfelBean.ujceg)}" update=":ezaform" validateClient="true"/>
+		</h:form>
+		</p:panel>
+		<br/><br/>
          </ui:define>
       </ui:composition>
    </h:body>

@@ -23,6 +23,7 @@ public class connectiontest {
 		
 		try {
 			kolcsonzoDAO.fetchUgyfel();
+			kolcsonzoDAO.insertUgyfel("ZZZZZZZZ", "FERENC JÓSKA",datum, "HOLD", "NAGYKRÁTER 2.", "06703236", "doom kft-");
 		}
 			
 		catch(Exception exc) {	

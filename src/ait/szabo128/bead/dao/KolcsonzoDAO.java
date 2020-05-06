@@ -68,7 +68,9 @@ public class KolcsonzoDAO {
     public void insertUgyfel(String szemelyiszam, String nev, String szulido, String szulhely, String cim, String telefon, String ceg){
     	myconn = connect();
     	try {
+    		//System.out.println(szulido + szemelyiszam + nev);
     		Date szulidoinmilis = Date.valueOf(szulido);
+    		//System.out.println(szulidoinmilis);
     		PreparedStatement preparedstatement = myconn.prepareStatement("insert into ugyfel (szemelyiszam, nev, szulido, szulhely, cim, telefon, ceg ) values (?,?,?,?,?,?,?)");
     		preparedstatement.setString(1, szemelyiszam);
     		preparedstatement.setString(2, nev);
@@ -80,7 +82,6 @@ public class KolcsonzoDAO {
     		preparedstatement.execute(); 		
     	}catch (SQLException ex) {
             System.out.println(ex.getMessage());}
-    	
     }
     
     public ArrayList<JarmuEntity> fetchJarmu() {
