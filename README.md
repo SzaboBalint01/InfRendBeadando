@@ -1,4 +1,4 @@
-# Informatikai Rendszerek Építése Beadandó
+# Informatikai Rendszerek Építése Beadandó SZABÓ BÁLINT - COUDEM
 
 # Felhasznált eszközök
 Jboss Wildfly 12
