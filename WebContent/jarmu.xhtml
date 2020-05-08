@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ <h:body>
+      <ui:composition template="templates/template.xhtml">	
+         <ui:define name="content">				
+            <br/>
+			<p:panel id="jarmuvek" header="Kölcsönözhető járművek" style="margin-bottom:10px;font-variant:small-caps">
+				<p:outputPanel deferred="true">
+			  		<h:form id="jarmuTable">
+            			<p:messages id="messages"/>
+            				<p:column style="text-align: center">
+               					 <p:dataTable var="jarmu"
+		                             emptyMessage="Nincsenek járművek"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{JarmuBean.listJarmu()}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{jarmu.idjarmu}" />
+					                    </p:column>
+					                    <p:column headerText="Típus">
+					                        <h:outputText value="#{jarmu.tipus}" />
+					                    </p:column>
+					                    <p:column headerText="Rendszám">
+					                        <h:outputText value="#{jarmu.rendszam}" />
+					                    </p:column>
+					                    <p:column headerText="Gyártó">
+					                        <h:outputText value="#{jarmu.gyarto}" />
+					                    </p:column>
+					                    <p:column headerText="Alváz szám">
+					                        <h:outputText value="#{jarmu.alvazszam}" />
+					                    </p:column>
+					                    <p:column headerText="Beszerzési dátum">
+					                        <h:outputText value="#{jarmu.beszerzesidatum}" />
+					 					</p:column>
+										<p:column headerText="Kölcsönzési díj">
+						                        <h:outputText value="#{jarmu.kolcsonzesidij}" />
+					 					</p:column>
+										<p:column headerText="Extra díj/KM">
+						                        <h:outputText value="#{jarmu.futottkmdij}" />
+					 					</p:column>
+										<p:column headerText="Státusz" style="#{jarmu.statusz eq 2 ? 'background-color:Black;' : (jarmu.statusz eq 0 ? 'background-color:Green;' : 'background-color:Red;')}">
+						                       
+					 					</p:column>
+               						 </p:dataTable>
+					            </p:column>
+					        </h:form>
+						</p:outputPanel>
+						<h:form>
+						   <h:panelGrid columns="3" layout="grid" styleClass="showcase-text-align-center" cellpadding="5">
+								<h:outputLabel for="tipus" value="Típus:" style="font-weight:bold"/>
+						      	<p:inputText id="tipus" value="#{JarmuBean.tipus}" />
+						       	<p:commandButton value="Keresés" icon="pi pi-search" update=":dataTableGroup" onclick="PF('dlg2').show();"/>
+
+								<h:outputLabel for="rendszam" value="Rendszám:" style="font-weight:bold"/>
+								<p:inputText id="rendszam" value="#{JarmuBean.rendszam}" />
+							    <p:commandButton value="Keresés" icon="pi pi-search" update=":dataTableGroup2" onclick="PF('dlg3').show();"/>
+								<br/><br/>
+								<h4 style="margin-top: 0">Státusz mező értékei:</h4>		
+								<h:panelGrid columns="2" border="0">
+								    <h:panelGroup>Kölcsönözhető</h:panelGroup>
+									<h:panelGroup style="background-color:Green;">___0___</h:panelGroup>
+								    <h:panelGroup>Kölcsönzött</h:panelGroup>
+									<h:panelGroup style="background-color:Red;">___1___</h:panelGroup>
+								    <h:panelGroup>Sérült</h:panelGroup>
+									<h:panelGroup style="background-color:Black;color:white;">___2___</h:panelGroup>
+								</h:panelGrid>
+						    </h:panelGrid>
+						</h:form>
+						</p:panel>
+						<p:dialog header="Keresés eredménye" widgetVar="dlg2" minHeight="40">
+						<h:panelGroup id="dataTableGroup">
+						    <p:dataTable var="jarmu"
+		                             emptyMessage="Nincs ilyen típusú jármű!"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{JarmuBean.searchJarmutipus(JarmuBean.tipus)}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{jarmu.idjarmu}" />
+					                    </p:column>
+					                    <p:column headerText="Típus">
+					                        <h:outputText value="#{jarmu.tipus}" />
+					                    </p:column>
+					                    <p:column headerText="Rendszám">
+					                        <h:outputText value="#{jarmu.rendszam}" />
+					                    </p:column>
+					                    <p:column headerText="Gyártó">
+					                        <h:outputText value="#{jarmu.gyarto}" />
+					                    </p:column>
+					                    <p:column headerText="Alváz szám">
+					                        <h:outputText value="#{jarmu.alvazszam}" />
+					                    </p:column>
+					                    <p:column headerText="Beszerzési dátum">
+					                        <h:outputText value="#{jarmu.beszerzesidatum}" />
+					 					</p:column>
+										<p:column headerText="Kölcsönzési díj">
+						                        <h:outputText value="#{jarmu.kolcsonzesidij}" />
+					 					</p:column>
+										<p:column headerText="Extra díj/KM">
+						                        <h:outputText value="#{jarmu.futottkmdij}" />
+					 					</p:column>
+										<p:column headerText="Státusz">
+						                        <h:outputText value="#{jarmu.statusz}" />
+					 					</p:column>
+               						 </p:dataTable>
+								</h:panelGroup>
+						</p:dialog>
+					<p:dialog header="Keresés eredménye" widgetVar="dlg3" minHeight="40">
+						<h:panelGroup id="dataTableGroup2">
+						    <p:dataTable var="jarmu"
+		                             emptyMessage="Nincs ilyen rendszámú jármű!"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{JarmuBean.searchJarmurendszam(JarmuBean.rendszam)}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{jarmu.idjarmu}" />
+					                    </p:column>
+					                    <p:column headerText="Típus">
+					                        <h:outputText value="#{jarmu.tipus}" />
+					                    </p:column>
+					                    <p:column headerText="Rendszám">
+					                        <h:outputText value="#{jarmu.rendszam}" />
+					                    </p:column>
+					                    <p:column headerText="Gyártó">
+					                        <h:outputText value="#{jarmu.gyarto}" />
+					                    </p:column>
+					                    <p:column headerText="Alváz szám">
+					                        <h:outputText value="#{jarmu.alvazszam}" />
+					                    </p:column>
+					                    <p:column headerText="Beszerzési dátum">
+					                        <h:outputText value="#{jarmu.beszerzesidatum}" />
+					 					</p:column>
+										<p:column headerText="Kölcsönzési díj">
+						                        <h:outputText value="#{jarmu.kolcsonzesidij}" />
+					 					</p:column>
+										<p:column headerText="Extra díj/KM">
+						                        <h:outputText value="#{jarmu.futottkmdij}" />
+					 					</p:column>
+										<p:column headerText="Státusz">
+						                        <h:outputText value="#{jarmu.statusz}" />
+					 					</p:column>
+               						 </p:dataTable>
+								</h:panelGroup>
+						</p:dialog>
+            		<br/><br/>
+        	 </ui:define>
+      </ui:composition>
+   </h:body>
+<h:form>
+</h:form>
+</html>

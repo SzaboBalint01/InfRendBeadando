@@ -14,7 +14,7 @@ xmlns:p="http://primefaces.org/ui">
          <ui:define name="content">				
             <br/>
 	<p:panel header="Új ügyfél felvétele" style="margin-bottom:5px;font-variant:small-caps">
-		<h:form id="ezaform">
+		<h:form>
 			 <h:outputLabel for="szemelyiszam" value="Személyi szám:" style="font-weight:bold;position:absolute;"/>
 			 <p:inputMask id="szemelyiszam" value="#{UgyfelBean.ujszemelyiszam}" required="true"  style="margin-left:225px;" mask="********" title="Maximum 8 karakter."/>
 			 <p:tooltip for="szemelyiszam" showEvent="focus" hideEvent="blur" />	
@@ -44,7 +44,7 @@ xmlns:p="http://primefaces.org/ui">
 			 <p:tooltip for="ceg" showEvent="focus" hideEvent="blur" />
 		    <br/><br/>
 			<p:growl id="growl" showDetail="true" life="1500"/>
-            <p:commandButton id="felvetelbutton" value="Felvétel" icon="pi pi-check" action="#{UgyfelBean.addUgyfel(UgyfelBean.ujszemelyiszam,UgyfelBean.ujnev,UgyfelBean.ujszulido,UgyfelBean.ujszulhely,UgyfelBean.ujcim,UgyfelBean.ujtelefon,UgyfelBean.ujceg)}" update=":ezaform" validateClient="true"/>
+            <p:commandButton id="felvetelbutton" value="Felvétel" icon="pi pi-check" action="#{UgyfelBean.addUgyfel(UgyfelBean.ujszemelyiszam,UgyfelBean.ujnev,UgyfelBean.ujszulido,UgyfelBean.ujszulhely,UgyfelBean.ujcim,UgyfelBean.ujtelefon,UgyfelBean.ujceg)}" update="@form" validateClient="true"/>
 		</h:form>
 		</p:panel>
 		<br/><br/>

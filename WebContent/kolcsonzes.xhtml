@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ <h:body>
+      <ui:composition template="templates/template.xhtml">	
+         <ui:define name="content">				
+            <br/>
+			<p:panel id="kolcsonzesek" header="Aktív kölcsönzések" style="margin-bottom:10px;font-variant:small-caps">
+				<p:outputPanel deferred="true">
+			  		<h:form id="kolcsonzesTable">
+            			<p:messages id="messages"/>
+            				<p:column style="text-align: center">
+               					 <p:dataTable var="kolcsonzes"
+		                             emptyMessage="Nincsenek kölcsönzések"
+		                             tableStyle="width: auto; margin: 0px auto; text-align: center"
+		                             value="#{KolcsonzesBean.listKolcsonzes()}">
+										<p:column headerText="ID">
+					                        <h:outputText value="#{kolcsonzes.idkolcsonzes}" />
+					                    </p:column>
+					                    <p:column headerText="Ideje">
+					                        <h:outputText value="#{kolcsonzes.kolcsonzesideje}" />
+					                    </p:column>
+										<p:column headerText="Ügyfél név:">
+					                        <h:outputText value="#{kolcsonzes.ugyfelnev}" />
+					                    </p:column>
+										<p:column headerText="Ügyfél személyiszám:">
+					                        <h:outputText value="#{kolcsonzes.ugyfelszemelyiszam}" />
+					                    </p:column>
+										<p:column headerText="Jármű gyártó:">
+					                        <h:outputText value="#{kolcsonzes.jarmugyarto}" />
+					                    </p:column>
+										<p:column headerText="Jármű típus:">
+					                        <h:outputText value="#{kolcsonzes.jarmutipus}" />
+					                    </p:column>
+               						 </p:dataTable>
+					            </p:column>
+					        </h:form>
+						</p:outputPanel>
+						</p:panel>
+						<p:panel header="Kölcsönzés befejezése" style="margin-bottom:10px;font-variant:small-caps">
+							<h:form>
+								<p:outputLabel value="Kölcsönzés azonosítója:" style="font-weight:bold;position:absolute;" for="kolcsazon"/>
+        						<p:autoComplete id="kolcsazon" style="margin-left:175px;" forceSelection="true" value="#{KolcsonzesBean.idvalasztas}" completeMethod="#{KolcsonzesBean.searchKolcsonzesID}"/>
+								<br/><br/>
+								<p:outputLabel value="Állapot:" style="font-weight:bold;position:absolute;" for="allapot"/>
+						        <p:selectBooleanCheckbox id="allapot" style="margin-left:175px;" value="#{KolcsonzesBean.serult}" itemLabel="Sérült"/>
+								<br/>
+						 		<h:outputLabel for="megtettkm" value="Megtett kM:" style="font-weight:bold;position:absolute;"/>
+						 		<p:inputText id="megtettkm" value="#{KolcsonzesBean.futottkmdij}" required="true"  style="margin-left:175px;" title="kM."/>
+						 		<p:tooltip for="megtettkm" showEvent="focus" hideEvent="blur" />
+								<br/><br/>
+								<p:commandButton value="Befejezés" update=":SumGroup :kolcsonzesek" icon="pi pi-search" action="#{KolcsonzesBean.endKolcsonzes(KolcsonzesBean.idvalasztas,KolcsonzesBean.serult,KolcsonzesBean.futottkmdij)}" onclick="PF('dlg12').show();"/>
+						</h:form>
+						</p:panel>
+            		<br/><br/>
+						<p:dialog header="A kölcsönzés költsége" widgetVar="dlg12" minHeight="40">
+						<h:panelGroup id="SumGroup">
+						<p:panel>
+						<p:outputLabel value="A fizetendő összeg:" for="osszeg"/>
+						<h:outputText value="#{KolcsonzesBean.SUM}" id="osszeg"/>
+						</p:panel>
+						</h:panelGroup>
+						</p:dialog>
+        	 </ui:define>
+      </ui:composition>
+   </h:body>
+</html>

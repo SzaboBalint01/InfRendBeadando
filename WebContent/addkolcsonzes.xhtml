@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ <h:body>
+      <ui:composition template="templates/template.xhtml">	
+         <ui:define name="content">				
+            <br/>
+				<p:panel id="addkolcsonzes" header="Új kölcsönzés indítása" style="margin-bottom:10px;font-variant:small-caps">
+				<h:form>
+					 <h:outputLabel for="szemely" value="Ügyfél személyiszáma:" style="font-weight:bold;position:absolute;"/>
+				     <p:autoComplete id="szemely" forceSelection="true" value="#{KolcsonzesBean.ugyfelvalasztas}" completeMethod="#{KolcsonzesBean.searchKolcsonzesSzemelyiszam}" required="true" style="margin-left:225px;"/>	
+					<br/><br/>
+					 <h:outputLabel for="jarmu" value="Jármű rendszám:" style="font-weight:bold;position:absolute;"/>
+				     <p:autoComplete id="jarmu" forceSelection="true" value="#{KolcsonzesBean.jarmuvalasztas}" completeMethod="#{KolcsonzesBean.searchKolcsonzesJarmu}" required="true" style="margin-left:225px;"/>
+                     <br/><br/>
+					 <h:outputLabel for="kolcsonzesdatum" value="Kölcsönzési dátum:" style="font-weight:bold;position:absolute;"/>
+			 		 <p:inputMask id="kolcsonzesdatum" value="#{KolcsonzesBean.kolcsonzesidatum}" required="true"  style="margin-left:225px;" mask="9999-99-99" title="Formátum: yyyy-mm-dd" />
+			 		 <p:tooltip for="kolcsonzesdatum" showEvent="focus" hideEvent="blur" />
+					 <br/><br/>
+					 <p:commandButton id="felvetelbutton" value="Felvétel" icon="pi pi-check" action="#{KolcsonzesBean.addKolcsonzes(KolcsonzesBean.kolcsonzesidatum,KolcsonzesBean.ugyfelvalasztas,KolcsonzesBean.jarmuvalasztas)}" update="@form" validateClient="true"/>
+					</h:form>
+				</p:panel>
+            	<br/><br/>
+        	 </ui:define>
+      </ui:composition>
+   </h:body>
+<h:form>
+</h:form>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:p="http://primefaces.org/ui">
+ 
+<h:head>
+</h:head>
+ <h:body>
+      <ui:composition template="templates/template.xhtml">	
+         <ui:define name="content">				
+            <br/>
+	<p:panel header="Új jármű felvétele" style="margin-bottom:5px;font-variant:small-caps">
+		<h:form>
+			 <h:outputLabel for="tipus" value="Típus:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputMask id="tipus" value="#{JarmuBean.ujtipus}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="tipus" showEvent="focus" hideEvent="blur" />	
+			<br/><br/>
+			 <h:outputLabel for="rendszam" value="Rendszám:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputText id="rendszam" value="#{JarmuBean.ujrendszam}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="rendszam" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			 <h:outputLabel for="gyarto" value="Gyártó:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputText id="gyarto" value="#{JarmuBean.ujgyarto}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="gyarto" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			 <h:outputLabel for="alvazszam" value="Alvázszám:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputText id="alvazszam" value="#{JarmuBean.ujalvazszam}" required="true"  style="margin-left:225px;" title="Maximum 45 karakter."/>
+			 <p:tooltip for="alvazszam" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			 <h:outputLabel for="beszerzesidatum" value="Beszerzési dátum:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputMask id="beszerzesidatum" value="#{JarmuBean.ujbeszerzesidatum}" required="true"  style="margin-left:225px;" mask="9999-99-99" title="Formátum: yyyy-mm-dd" />
+			 <p:tooltip for="beszerzesidatum" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			 <h:outputLabel for="kolcsonzesidij" value="Kölcsönzési díj:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputText id="kolcsonzesidij" value="#{JarmuBean.ujkolcsonzesidij}" required="true"  style="margin-left:225px;" title="Egész szám, forintban."/>
+			 <p:tooltip for="kolcsonzesidij" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			 <h:outputLabel for="futottkmdij" value="Extra díj/KM:" style="font-weight:bold;position:absolute;"/>
+			 <p:inputText id="futottkmdij" value="#{JarmuBean.ujfutottkmdij}" required="true"  style="margin-left:225px;" title="Egész szám, forintban."/>
+			 <p:tooltip for="futottkmdij" showEvent="focus" hideEvent="blur" />
+			<br/><br/>
+			<p:growl id="growl" showDetail="true" life="1500"/>
+            <p:commandButton id="felvetelbutton" value="Felvétel" icon="pi pi-check" action="#{JarmuBean.addJarmu(JarmuBean.ujtipus,JarmuBean.ujrendszam,JarmuBean.ujgyarto,JarmuBean.ujalvazszam,JarmuBean.ujbeszerzesidatum,JarmuBean.ujkolcsonzesidij,JarmuBean.ujfutottkmdij)}" update="@form" validateClient="true"/>
+		</h:form>
+		</p:panel>
+		<br/><br/>
+         </ui:define>
+      </ui:composition>
+   </h:body>
+<h:form>
+</h:form>
+</html>

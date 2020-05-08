@@ -14,6 +14,27 @@ xmlns:p="http://primefaces.org/ui">
          <ui:define name="content">				
             <br/>
 		<p:panel>
+		<h1 id="informatikai-rendszerek-építése-beadandó">Informatikai Rendszerek Építése Beadandó</h1>
+<h1 id="felhasznált-eszközök">Felhasznált eszközök</h1>
+<p>Jboss Wildfly 12 MySQL 8.0 Primefaces JSF 8.0</p>
+<h1 id="architektúra">Architektúra</h1>
+<p>A feladatok tipikusan olyan alkalmazások példái, ahol egy cég, vagy szervezet ügyfeleinek és eszközeinek közös nyilvántartását kell megoldani. Az elkészült szoftver JBoss EAP vagy JBoss Wildfly alkalmazás legyen JSF (Primefaces keretrendszer felhasználásával):</p>
+<ul>
+<li>Adatbázis: JDBC alapú relációs adatbázis, lehet MySQL, de lehet a JBoss beépített Hypersonic adatbázis kezelője</li>
+</ul>
+<p>Az alkalmazottaknak nem szükséges azonosítani magukat az adatbázis elérésénél, és minden alkalmazott ugyan olyan felhasználói jogokkal rendelkezik.</p>
+<h2 id="feladat-4.-autókölcsönző-nyilvántartás">Feladat: 4. Autókölcsönző nyilvántartás</h2>
+<h3 id="általános-leírás">Általános leírás</h3>
+<p>A cél, egy képzeletbeli autókölcsönzők munkáját segítő szoftver tervezése és implementálása. A kölcsönzőben 4 kerekű és vizi járműveket lehet kölcsönözni. Az alkalmazást a kölcsönző vezetője és dolgozói használják a kölcsönzések menedzselésére, a kölcsönzési díj kiszámítására, az esetleges sérülések regisztrálására.</p>
+<h4 id="felhasználási-esetek">Felhasználási esetek</h4>
+<h5 id="ügyfelek-nyílvántartása">Ügyfelek nyílvántartása</h5>
+<p>Csak az kölcsönözhet, akit a rendszerben nyílvántartásba vettek. Név, cím, igazolványszám, telefon, stb megadása kötelező.</p>
+<h5 id="készletnyílvántartás">Készletnyílvántartás</h5>
+<p>A rendszer nyílvántartja a kölönböző járművek adatait: pl. típus, gyártó, rendszám, alvázszám, beszerzés dátuma, sorszám, kölcsönzési díj, futott km díj, státusz (szabad, kikölcsönzött, selejtezett). Itt lehet az új járműveket nyílvántartásba venni. A kölcsönző járműveit lehet listázni, keresni típus, rendszám szerint. Meg lehet tekinteni melyik járművet kölcsönözték ki éppen és melyik szabad.</p>
+<h5 id="kölcsönzés">Kölcsönzés</h5>
+<p>A kölcsönzéshez szükséges egy ügyfél létrehozása. A kölcsönzéskor egy adott ügyfélhez rendeljük a kölcsönzött jármű azonosítóját. Egy ügyfél több járművet is kölcsönözhet egyszerre. (pl. ha az ügyfél egy cég)</p>
+<h5 id="kölcsönzés-befejezése">Kölcsönzés befejezése</h5>
+<p>A kölcsönvett járművet visszahozzák. A kölcsönzési díj kiszámítása ilyenkor történik. A díj, napi alapon kerül meghatározásra, ehhez hozzáadódik a futott kilométerdíj. Ha az autó sérülten érkezik vissza, akkor a kölcsönzési díj egy előre megadott összeggel nő. (mivel a többi kárt a biztosító fizeti)</p>
 		</p:panel>
             <br/><br/>
          </ui:define>

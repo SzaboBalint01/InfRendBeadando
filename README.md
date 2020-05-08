@@ -1,5 +1,11 @@
 # Informatikai Rendszerek Építése Beadandó
 
+# Felhasznált eszközök
+Jboss Wildfly 12
+MySQL 8.0
+Primefaces JSF 8.0
+
+
 # Architektúra
 
 A feladatok tipikusan olyan alkalmazások példái, ahol egy cég, vagy szervezet ügyfeleinek és eszközeinek közös nyilvántartását kell megoldani. Az elkészült szoftver JBoss EAP vagy JBoss Wildfly alkalmazás legyen JSF (Primefaces keretrendszer felhasználásával):
